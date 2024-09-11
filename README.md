@@ -13,8 +13,22 @@
 3. ```
    docker-compose run composer install
    ```
+4. Нужно создать файл .env с такими параметрами БД
 
-4. ```
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=root
+
+    ```
+
+5. ```
+   docker-compose run artisan key:generate
+   ```
+6. ```
    docker-compose run artisan migrate
    ```
 
