@@ -43,6 +43,12 @@ services:
     environment:
       - PMA_ARBITRARY=1
 
+  composer:
+    build:
+      context: docker/composer
+    volumes:
+      - .:/var/www/html/
+
   artisan:
     build:
       context: docker/php

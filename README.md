@@ -10,8 +10,11 @@
 2. ```
    docker-compose up --build
    ```
-
 3. ```
+   docker-compose run composer install
+   ```
+
+4. ```
    docker-compose run artisan migrate
    ```
 
