@@ -11,8 +11,7 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - php
-    networks:
-      - laravel
+      - mysql
 
   # PHP
   php:
@@ -20,29 +19,33 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - .:/var/www/html/:cached
-    networks:
-      - laravel
+      - .:/var/www/html/
 
   # MySQL
   mysql:
     image: mysql:8
     restart: always
     ports:
-      - "3306:3306"
+      - "3316:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: laravel
       MYSQL_USER: laravel
       MYSQL_PASSWORD: root
+
+    # volumes:
+    #   - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9001:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  artisan:
+    build:
+      context: docker/php
     volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - laravel
-
-volumes:
-  mysql_data:
-
-networks:
-  laravel:
-    driver: bridge
+      - .:/var/www/html/
+    entrypoint: ["php", "/var/www/html/artisan"]

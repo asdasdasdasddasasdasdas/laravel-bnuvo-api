@@ -96,15 +96,11 @@ class GuestController extends Controller
      */
     private function getCountryFromPhone($phone)
     {
-        // Пример определения страны по коду телефона
+
         if (strpos($phone, '+7') === 0) {
             return 'Россия';
         }
-        // Добавьте дополнительные условия для других стран
-        // Например:
-        // if (strpos($phone, '+1') === 0) {
-        //     return 'США';
-        // }
+
 
         return 'Неизвестная страна';
     }
