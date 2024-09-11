@@ -10,11 +10,10 @@
 2. ```
    docker-compose up --build
    ```
-3.
 
-```
-docker-compose run artisan migrate
-```
+3. ```
+   docker-compose run artisan migrate
+   ```
 
 ## Примеры запросов
 
